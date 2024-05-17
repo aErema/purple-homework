@@ -1,18 +1,12 @@
 'use strict'
 
-const arrayOfObjects = [
-        {id: 1, name: "Вася"},
-        {id: 2, name: "Петя"},
-        {id: 1, name: "Вася"},
-];
+console.log(check_birthday("2010.11.01"));
+console.log(check_birthday("2010.05.16"));
+console.log(check_birthday("2000.05.01"));
 
-console.log(unionArrayOfObjects(arrayOfObjects));
+function check_birthday(day) {
+    var date = new Date(day);
+    var diff = new Date(new Date().getTime() - date.getTime());
 
-function unionArrayOfObjects(array) {
-    const checkSet = new Set(array.map((item) => item.id));
-    let arrayOfObjects = [];
-    checkSet.forEach((value) => {
-        arrayOfObjects = [...arrayOfObjects, array.find(item => item.id === value)];
-    });
-    return arrayOfObjects;
+    return diff.getUTCFullYear() - 1970 > 13;
 }
